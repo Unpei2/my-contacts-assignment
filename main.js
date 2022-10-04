@@ -25,10 +25,11 @@ function goBtnHandler() {
     displayByCountry();
   }
 }
-
+let contactstring = JSON.stringify(contacts)
 // MENU FUNCTIONS
 function displayContacts() {
   console.log('Display Contacts');
+  outputEl.innerHTML = contactstring
   
 }
 
@@ -38,9 +39,9 @@ function addContact() {
   let contnumber = prompt("Contact Number?")
   let contcountry = prompt("Contact Country?")
   contacts.push(information(contname, contemail, contnumber, contcountry));
-  console.log(contacts)
-  localStorage.setItem(contname, contemail, contnumber, contcountry)
-  
+  let contactstring = JSON.stringify(contacts)
+  localStorage.setItem(contname, contactstring)   
+  displayContacts() 
 }
 
 function removeContact() {
@@ -49,6 +50,7 @@ function removeContact() {
 
 function displayByName() {
   console.log('Display by Name');
+  
 }
 
 function displayByCountry() {
@@ -57,6 +59,9 @@ function displayByCountry() {
 
 function information(name,email,number,country) {
   return {
-    contname:name, contemail:email, contnumber:number, contcountry:country
+    name, 
+    email, 
+    number, 
+    country
   }
 }

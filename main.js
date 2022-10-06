@@ -9,7 +9,6 @@ let contacts = loadContacts()
 
 // Go Btn - Menu Listener
 goBtnEl.addEventListener('click', goBtnHandler);
-
 function goBtnHandler() {
   // Get Menu Selection
   let selection = menuEl.value;
@@ -28,20 +27,20 @@ function goBtnHandler() {
 }
 // MENU FUNCTIONS
 function displayContacts() {
-  
-  for (i = 0;i<contacts.length;i ++){
-    let output = " "
+  let output = "  ";
+  for (i = 0;i < contacts.length;i ++){
+    
     output += getContactHTMLStr(i,contacts[i])
+    
   }
   outputEl.innerHTML = output
-
 }
 function getContactHTMLStr(i, contact){
   return `
     <div class="${contact.name}">
       <h3>${i}: ${contact.name}</h3>
       <p>${contact.email}</p>
-      <p>${contact.number}(${contact.country})<p>
+      <p>${contact.number} (${contact.country})<p>
     </div>
   `;
 }
@@ -57,11 +56,24 @@ function addContact() {
 function removeContact() {
   let removecont = +prompt("Which contact do you want to remove?")
   contacts.splice(removecont, 1)
+  savecont()
+  displayContacts()
+  alert(`Contact ${removecont} has been removed.`)
 }
 
 function displayByName() {
-  console.log('Display by Name');
-  
+  askname = prompt("What name are you looking for?")
+  askname = askname.toLowerCase() 
+  outputEl.innerHTML = " "
+  for (l = 0;l < contacts.length;l++){
+    
+    if (contacts[l].name === askname){
+      console.log(contacts[l].name)
+      output += getContactHTMLStr(l, contacts[l])
+      
+    } 
+  } 
+  outputEl.innerHTML = output
 }
 
 function displayByCountry() {

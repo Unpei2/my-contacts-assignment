@@ -53,10 +53,6 @@ function addContact() {
   contacts.push(information(contname, contemail, contnumber, contcountry));
   savelocal()
 }
-// function savecontactarray(contname, contemail, contnumber, contcountry){
-//   contacts.push(information(contname, contemail, contnumber, contcountry));
-//   savecontactlocal()
-// }
 function removeContact() {
   let removecont = +prompt("Which contact do you want to remove?")
   contacts.splice(removecont, 1)
@@ -64,7 +60,6 @@ function removeContact() {
   displayContacts()
   alert(`Contact ${removecont} has been removed.`)
 }
-
 function displayByName() {
   askname = prompt("What name are you looking for?").toLowerCase()  
   let output = "  ";
@@ -75,20 +70,16 @@ function displayByName() {
   }
   outputEl.innerHTML = output
 }
-
 function displayByCountry() {
   askcountry = prompt("What country are you looking for?").toLowerCase()  
   let output = "  ";
-  for (i = 0;i < contacts.length - 1;i++){
+  for (i = 0;i < contacts.length;i++){
     if (contacts[i].country === askcountry){
-        console.log(contacts[i].name
-          )
         output += getContactHTMLStr(i,contacts[i])
     }
   }
   outputEl.innerHTML = output
 }
-
 function information(name,email,number,country) {
   return {
     name, 
